@@ -13,10 +13,22 @@ Also this mounting the web application to Apache root directory
 
 #### Usage
 
-1. Use Vagrant for development environment
+1. Installing `ruby`
+
+        https://www.ruby-lang.org/en/installation/
+
+2. Installing `librarian-chef`
+
+        gem install librarian-chef
+
+3. Installing cookbooks with `librarian-chef`
+
+        librarian-chef install
+
+4. Use Vagrant for development environment
 
         vagrant up
 
-2. Checking the site on browser
+5. Checking the site on browser
 
         http://192.168.34.100

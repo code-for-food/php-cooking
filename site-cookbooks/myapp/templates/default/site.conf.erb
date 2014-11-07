@@ -1,0 +1,39 @@
+<VirtualHost *:80>
+	ServerName <%= @params[:server_name] %>
+	DocumentRoot <%= @params[:docroot] %>
+
+	#http://enable-cors.org/server_apache.html
+	Header set Access-Control-Allow-Origin "*"
+	Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept, X-API-KEY, TOKEN"
+
+	<Directory <%= @params[:docroot] %>>
+		Options FollowSymLinks
+		AllowOverride All
+
+		<% if node['apache']['version'] == '2.4' -%>
+    		Require all granted
+    	<% elsif node['apache']['version'] == '2.2' -%>
+			Order allow,deny
+			Allow from all
+    	<% end -%>
+
+		RewriteEngine On
+		RewriteBase /
+		RewriteRule ^index\.php$ - [L]
+		RewriteCond %{REQUEST_FILENAME} !-f
+		RewriteCond %{REQUEST_FILENAME} !-d
+		RewriteRule . /index.php [L]
+
+
+	</Directory>
+
+	<Directory />
+		Options FollowSymLinks
+		AllowOverride None
+	</Directory>
+	ErrorLog ${APACHE_LOG_DIR}/myapp.error.log
+	# Possible values include: debug, info, notice, warn, error, crit,
+	# alert, emerg.
+	LogLevel warn
+	CustomLog ${APACHE_LOG_DIR}/myapp.access.log combined
+</VirtualHost>

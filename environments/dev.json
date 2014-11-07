@@ -1,0 +1,22 @@
+{
+  "name": "dev",
+  "default_attributes": {
+    "apache2": {
+      "listen_ports": [
+        "80",
+        "443"
+      ]
+    },
+    "php": {
+      "ext_conf_dir": "/etc/php5/apache2/conf.d"
+    },
+    "myapp": {
+      "user": "vagrant",
+      "root_path": "/vagrant",
+      "server_name": "phpdev.codeforfoods.net"
+    }
+  },
+  "json_class": "Chef::Environment",
+  "description": "",
+  "chef_type": "environment"
+}

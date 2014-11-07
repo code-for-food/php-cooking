@@ -1,0 +1,24 @@
+{
+  "name": "myapp",
+  "description": "The role for app servers",
+  "json_class": "Chef::Role",
+  "default_attributes": {},
+  "override_attributes": {},
+  "chef_type": "role",
+  "run_list": [
+    "recipe[apt]",
+    "recipe[build-essential]",
+    "recipe[composer]",
+    "recipe[myapp]",
+    "recipe[myapp::deploy]"
+  ],
+  "env_run_lists": {
+    "dev": [
+      "recipe[apt]",
+      "recipe[build-essential]",
+      "recipe[composer]",
+      "recipe[myapp]",
+      "recipe[myapp::deploy]"
+    ]
+  }
+}

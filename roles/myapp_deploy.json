@@ -1,0 +1,16 @@
+{
+  "name": "myapp_deploy",
+  "description": "The role for app servers",
+  "json_class": "Chef::Role",
+  "default_attributes": {},
+  "override_attributes": {},
+  "chef_type": "role",
+  "run_list": [
+    "recipe[myapp::deploy]"
+  ],
+  "env_run_lists": {
+    "dev": [
+      "recipe[myapp::deploy]"
+    ]
+  }
+}
